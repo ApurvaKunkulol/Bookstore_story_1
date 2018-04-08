@@ -1,0 +1,5 @@
+{
+    "sample_book_title": {"book_type": "fiction", "rent": 3},
+    "sample_book_title_1": {"book_type": "regular", "rent": 1.5},
+    "sample_book_title_2": {"book_type": "novel", "rent": 1.5}
+}
