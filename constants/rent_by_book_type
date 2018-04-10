@@ -1,5 +1,5 @@
 {
-    "sample_book_title": {"book_type": "fiction", "rent": 3},
-    "sample_book_title_1": {"book_type": "regular", "rent": 1.5},
-    "sample_book_title_2": {"book_type": "novel", "rent": 1.5}
+    "sample_book_title": {"book_type": "fiction", "minimum_duration": 0, "minimum_charges": 0, "regular_rent": 3},
+    "sample_book_title_1": {"book_type": "regular", "minimum_duration": 2, "minimum_charges": 1, "regular_rent": 1.5},
+    "sample_book_title_2": {"book_type": "novel", "minimum_duration": 3, "minimum_charges": 1.5, "regular_rent": 1.5}
 }

@@ -20,16 +20,28 @@ class RentCalculator(object):
         """
         total_rent = 0
         if self.book_data:
+            #import pdb
+            #pdb.set_trace()
+            print("\nBook\t\t   Duration    Rent")
+            print("--------------------------------------")
             for book, duration in self.book_data.items():
                 rent_info = self.rent_data.get(book)
                 if rent_info:
-                    charges = rent_info.get("rent")
-                    if charges:
-                        total_rent += (duration * charges)
-                    else:
-                        raise ValueError("Charges not specified for book type: {}".format(rent_info.get("book_type")))
+                    min_duration, min_charge = rent_info.get("minimum_duration", 0), rent_info.get("minimum_charges", 0)
+                    minimum_rent = 0
+                    if min_duration and min_charge:
+                        minimum_rent = min_duration * min_charge
+                    rent = 0
+                    if duration is not None and 0 < duration > min_duration:
+                        if not rent_info.get("regular_rent"):
+                            raise ValueError("Regular rent charges not specified.")
+                        rent = rent_info.get("regular_rent") * (duration - min_duration)
+                    print("{}\t{}\t{}".format(book, duration, (rent + minimum_rent)))
+                    total_rent += (rent + minimum_rent)
                 else:
                     raise ValueError("Rent information not available for '{}'.".format(book))
+            print("--------------------------------------")
+            print("Total Rent:\t\t{}".format(total_rent))
             return total_rent
         else:
             raise ValueError("No book names and durations supplied to calculate rent.")
